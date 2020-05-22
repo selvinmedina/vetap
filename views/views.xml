@@ -8,9 +8,22 @@
       <field name="arch" type="xml">
         <tree string="Animals">
           <field name="name"/>
-          <field name="species"/>
+          <field name="species_id"/>
+          <field name="breed_id"/>
           <field name="spoyorneuter"/>
           <field name="birthdate"/>
+        </tree>
+      </field>
+    </record>
+
+<!--    Breed List-->
+
+    <record model="ir.ui.view" id="vetapp.breed_list">
+      <field name="name">List Breed</field>
+      <field name="model">vetapp.breed</field>
+      <field name="arch" type="xml">
+        <tree string="Breed">
+          <field name="name"/>
         </tree>
       </field>
     </record>
@@ -24,6 +37,12 @@
       <field name="view_mode">tree,form</field>
     </record>
 
+
+    <record model="ir.actions.act_window" id="vetapp.action_breed">
+      <field name="name">Breed List</field>
+      <field name="res_model">vetapp.breed</field>
+      <field name="view_mode">tree,form</field>
+    </record>
 
     <!-- server action to the one above -->
     <!--
@@ -48,7 +67,7 @@
     <!-- menu categories -->
 
     <menuitem name="Animals" id="vetapp.animals" parent="vetapp.menu_root" action="vetapp.action_animal"/>
-
+    <menuitem name="Breed" id="vetapp.breed" parent="vetapp.menu_root" action="vetapp.action_breed"/>
     <!-- actions -->
     <!--
     <menuitem name="List" id="vetapp.menu_1_list" parent="vetapp.menu_1"
