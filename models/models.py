@@ -35,6 +35,25 @@ class vetapp_diagnosis(models.Model):
     _name = 'vetapp.diagnosis'
     name = fields.Char()
     code = fields.Char('Diagnostic Code')
+    symptom_ids = fields.Many2many('vetapp.symptom')
+    treatment_ids = fields.Many2many('vetapp.treatment')
     notes = fields.Text()
 
+class vetapp_symptom(models.Model):
+    _name = 'vetapp.symptom'
+    name = fields.Char()
+    code = fields.Char('Symptom Code')
+    diagnosis_ids = fields.Many2many('vetapp.diagnosis')
+    notes = fields.Text()
 
+class vetapp_treatment(models.Model):
+    _name = 'vetapp.treatment'
+    name = fields.Char()
+    code = fields.Char('Treatment Code')
+    notes = fields.Text()
+    product_ids = fields.Many2many("product.template")
+    diagnosis_ids = fields.Many2many('vetapp.diagnosis')
+
+class vetapp_products(models.Model):
+    _inherit = 'product.template'
+    treatment_ids = fields.Many2many('vetapp.treatment')
